@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { userAuth } from "./auth-operations";
+import { logIn, logOut, signIn } from "./auth-operation(axios)";
 
 const initialState = {
   user: { name: null, email: null },
@@ -12,31 +12,54 @@ const authSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
-      .addMatcher(
-        userAuth.endpoints.createUser.matchFulfilled,
-        (state, { payload }) => {
-          state.token = payload.token;
-          state.user = payload.user;
-          state.isLoggedIn = true;
-        }
-      )
-      .addMatcher(
-        userAuth.endpoints.loginUser.matchFulfilled,
-        (state, { payload }) => {
-          state.token = payload.token;
-          state.user = payload.user;
-          state.isLoggedIn = true;
-        }
-      )
-      .addMatcher(
-        userAuth.endpoints.logoutUser.matchFulfilled,
-        (state, action) => {
-          state.user = { name: null, email: null };
-          state.token = null;
-          state.isLoggedIn = false;
-        }
-      );
+      .addCase(signIn.fulfilled, (state, { payload }) => {
+        state.token = payload.token;
+        state.user = payload.user;
+        state.isLoggedIn = true;
+      })
+      .addCase(logIn.fulfilled, (state, { payload }) => {
+        state.token = payload.token;
+        state.user = payload.user;
+        state.isLoggedIn = true;
+      })
+      .addCase(logOut.fulfilled, (state) => {
+        state.user = initialState;
+        state.token = initialState.token;
+        state.isLoggedIn = false;
+      });
   },
 });
 
-export default authSlice;
+export default authSlice.reducer;
+
+// const authSlice = createSlice({
+//   name: "auth",
+//   initialState,
+//   extraReducers: (builder) => {
+//     builder
+//       .addMatcher(
+//         userAuth.endpoints.createUser.matchFulfilled,
+//         (state, { payload }) => {
+//           state.token = payload.token;
+//           state.user = payload.user;
+//           state.isLoggedIn = true;
+//         }
+//       )
+//       .addMatcher(
+//         userAuth.endpoints.loginUser.matchFulfilled,
+//         (state, { payload }) => {
+//           state.token = payload.token;
+//           state.user = payload.user;
+//           state.isLoggedIn = true;
+//         }
+//       )
+//       .addMatcher(
+//         userAuth.endpoints.logoutUser.matchFulfilled,
+//         (state) => {
+//             state.user = initialState;
+//             state.token = initialState.token;
+//             state.isLoggedIn = false;
+//         }
+//       );
+//   },
+// });

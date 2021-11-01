@@ -33,6 +33,9 @@ export const userAuth = createApi({
     logoutUser: builder.mutation({
       query: (user) => ({
         url: "/users/logout",
+        prepareHeaders: (headers) => {
+          return headers.unset("authentication", "");
+        },
         method: "POST",
         body: user,
       }),

@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useCreateUserMutation } from "../../redux/auth/auth-operations";
+import { signIn } from "../../redux/auth/auth-operation(axios)";
+import { useDispatch } from "react-redux";
 import Button from "../../components/Button/Button";
 import styles from "./RegisterView.module.css";
 
 export default function RegisterView() {
-  const [createUser] = useCreateUserMutation();
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +25,7 @@ export default function RegisterView() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createUser({ name, email, password });
+    dispatch(signIn({ name, email, password }));
     setName("");
     setEmail("");
     setPassword("");
