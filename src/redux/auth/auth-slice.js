@@ -1,10 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logIn, logOut, signIn } from "./auth-operation(axios)";
+import {
+  logIn,
+  logOut,
+  signIn,
+  fetchCurrentUser,
+} from "./auth-operation(axios)";
 
 const initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
+  isRefreshing: false,
 };
 
 const authSlice = createSlice({
@@ -26,6 +32,17 @@ const authSlice = createSlice({
         state.user = initialState;
         state.token = initialState.token;
         state.isLoggedIn = false;
+      })
+      .addCase(fetchCurrentUser.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
+        state.user = payload;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(fetchCurrentUser.rejected, (state) => {
+        state.isRefreshing = false;
       });
   },
 });

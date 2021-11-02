@@ -8,8 +8,8 @@ export const CustomLoader = () => {
       className={styles.Loader}
       type="Rings"
       color="#00FA9A"
-      height={800}
-      width={900}
+      height={400}
+      width={500}
       timeout={3000}
     />
   );
