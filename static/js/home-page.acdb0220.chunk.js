@@ -1,2 +1,0 @@
-(this["webpackJsonpgoit-react-hw-08-phonebook"]=this["webpackJsonpgoit-react-hw-08-phonebook"]||[]).push([[1],{120:function(t,e,c){"use strict";c.r(e);c(0);var i=c.p+"static/media/Backdrop.db75e70e.png",o=c(1);e.default=function(){return Object(o.jsx)("div",{children:Object(o.jsx)("img",{src:i,width:"100%",alt:""})})}}}]);
-//# sourceMappingURL=home-page.acdb0220.chunk.js.map
