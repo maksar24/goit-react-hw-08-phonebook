@@ -1,21 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { DefaultButton } from "./Button.styles";
 
-import styles from "./Button.module.css";
-
-const Button = ({ onLoadMore, contentBtn, disabled }) => (
-  <button disabled={disabled} onClick={onLoadMore} className={styles.button}>
+const Button = ({ onClick, contentBtn, disabled }) => (
+  <DefaultButton disabled={disabled} onClick={onClick}>
     {contentBtn}
-  </button>
+  </DefaultButton>
 );
 
 Button.defaultProps = {
-  onLoadMore: () => null,
+  onClick: () => null,
   disabled: false,
 };
 
 Button.propTypes = {
-  onLoadMore: PropTypes.func,
+  onClick: PropTypes.func,
   contentBtn: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
 };

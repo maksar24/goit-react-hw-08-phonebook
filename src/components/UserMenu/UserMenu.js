@@ -1,8 +1,10 @@
-import styles from "./UserMenu.module.css";
-import defaultAvatar from "./DefaultPicture.png";
+import { Container, Name } from "./UserMenu.styles";
+import defaultAvatar from "../../images/DefaultPicture.png";
 import { getUsername } from "../../redux/auth/auth-selectors";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../../redux/auth/auth-operation(axios)";
+import Button from "../Button/Button";
+import { Avatar } from "@mui/material";
 
 export default function UserMenu() {
   const dispatch = useDispatch();
@@ -10,12 +12,14 @@ export default function UserMenu() {
   const avatar = defaultAvatar;
 
   return (
-    <div className={styles.container}>
-      <img src={avatar} alt="" width="32" className={styles.avatar} />
-      <span className={styles.name}>Welcome, {name}</span>
-      <button type="button" onClick={() => dispatch(logOut())}>
-        Log out
-      </button>
-    </div>
+    <Container>
+      <Avatar alt="default" src={avatar} sx={{ width: 56, height: 56 }} />
+      <Name>Welcome, {name}</Name>
+      <Button
+        type="button"
+        onClick={() => dispatch(logOut())}
+        contentBtn="Log out"
+      />
+    </Container>
   );
 }

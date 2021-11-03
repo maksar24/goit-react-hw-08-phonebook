@@ -1,10 +1,10 @@
 import React from "react";
-import backdrop from "./Backdrop.png";
+import backdrop from "../../images/Backdrop.png";
 
 const HomeView = () => {
   return (
     <div>
-      <img src={backdrop} width="100%" alt="" />
+      <img src={backdrop} width="50%" alt="" />
     </div>
   );
 };

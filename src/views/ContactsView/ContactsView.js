@@ -15,7 +15,7 @@ import {
   addContactAction,
 } from "../../redux/contacts/contacts-operations(axios)";
 
-export default function ContactsView() {
+const ContactsView = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getFilteredContacts);
   const isLoading = useSelector(getLoading);
@@ -49,4 +49,6 @@ export default function ContactsView() {
       {contacts && <ContactList options={contacts} onDelete={deleteContact} />}
     </>
   );
-}
+};
+
+export default ContactsView;

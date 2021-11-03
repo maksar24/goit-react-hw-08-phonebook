@@ -1,4 +1,3 @@
-import "./App.css";
 import { lazy, Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch } from "react-router-dom";

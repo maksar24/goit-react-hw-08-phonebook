@@ -3,7 +3,7 @@ import { logIn } from "../../redux/auth/auth-operation(axios)";
 import { useSelector, useDispatch } from "react-redux";
 import { getIsLoggedIn } from "../../redux/auth/auth-selectors";
 import Button from "../Button/Button";
-import styles from "./LoginForm.module.css";
+import { Form, Label, LabelText, Input } from "./LoginForm.styles";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -30,40 +30,34 @@ export default function LoginForm() {
   };
 
   return (
-    <div>
+    <>
       {!isLoggedIn && (
-        <form
-          onSubmit={handleSubmit}
-          className={styles.form}
-          autoComplete="off"
-        >
-          <label className={styles.label}>
-            <span className={styles.labelText}>Email</span>
-            <input
+        <Form onSubmit={handleSubmit} autoComplete="off">
+          <Label>
+            <LabelText>Email</LabelText>
+            <Input
               type="email"
               name="email"
               value={email}
               onChange={handleChange}
               placeholder="Enter email"
-              className={styles.input}
             />
-          </label>
+          </Label>
 
-          <label className={styles.label}>
-            <span className={styles.labelText}>Password</span>
-            <input
+          <Label>
+            <LabelText>Password</LabelText>
+            <Input
               type="password"
               name="password"
               value={password}
               onChange={handleChange}
               placeholder="Enter password"
-              className={styles.input}
             />
-          </label>
+          </Label>
 
-          <Button type="submit" contentBtn="Sign up" />
-        </form>
+          <Button type="submit" contentBtn="Log in" />
+        </Form>
       )}
-    </div>
+    </>
   );
 }

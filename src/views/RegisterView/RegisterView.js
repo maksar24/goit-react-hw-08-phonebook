@@ -1,77 +1,11 @@
-import { useState } from "react";
-import { signIn } from "../../redux/auth/auth-operation(axios)";
-import { useDispatch } from "react-redux";
-import Button from "../../components/Button/Button";
-import styles from "./RegisterView.module.css";
+import RegisterForm from "../../components/RegisterForm/RegisterForm";
 
-export default function RegisterView() {
-  const dispatch = useDispatch();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
-      case "name":
-        return setName(value);
-      case "email":
-        return setEmail(value);
-      case "password":
-        return setPassword(value);
-      default:
-        return;
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(signIn({ name, email, password }));
-    setName("");
-    setEmail("");
-    setPassword("");
-  };
-
+const RegisterView = () => {
   return (
     <div>
-      <form onSubmit={handleSubmit} className={styles.form} autoComplete="off">
-        <label className={styles.label}>
-          <span className={styles.labelText}>Name</span>
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleChange}
-            placeholder="Enter name"
-            className={styles.input}
-          />
-        </label>
-
-        <label className={styles.label}>
-          <span className={styles.labelText}>Email</span>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-            placeholder="Enter email"
-            className={styles.input}
-          />
-        </label>
-
-        <label className={styles.label}>
-          <span className={styles.labelText}>Password</span>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-            placeholder="Enter password"
-            className={styles.input}
-          />
-        </label>
-
-        <Button type="submit" contentBtn="Sign up" />
-      </form>
+      <RegisterForm />
     </div>
   );
-}
+};
+
+export default RegisterView;
